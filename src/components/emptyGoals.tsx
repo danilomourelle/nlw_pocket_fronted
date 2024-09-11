@@ -1,8 +1,6 @@
-import { Plus } from "lucide-react";
 import letsStart from "../assets/lets-start-illustration.svg";
 import logo from "../assets/logo-in-orbit.svg";
-import { Button } from "./ui/button";
-import { DialogTrigger } from "./ui/dialog";
+import { GoalDialogTrigger } from "./goalDialogTrigger";
 
 export function EmptyGoals() {
   return (
@@ -13,13 +11,7 @@ export function EmptyGoals() {
         Você ainda não cadastrou nenhuma meta, que tal cadastrar um agora mesmo?
       </p>
 
-      <DialogTrigger asChild>
-        {/* asChild vai fundir as tags <DialogTrigger> e <Button> em um único elemento HTML */}
-        <Button>
-          <Plus className="size-4" />
-          Cadastrar meta
-        </Button>
-      </DialogTrigger>
+      <GoalDialogTrigger />
     </div>
   );
 }
