@@ -1,6 +1,7 @@
 import logo from "./assets/logo-in-orbit.svg";
 import letsStart from "./assets/lets-start-illustration.svg";
 import { Plus } from "lucide-react";
+import { Button } from "./components/ui/button";
 
 export function App() {
   return (
@@ -11,13 +12,10 @@ export function App() {
         Você ainda não cadastrou nenhuma meta, que tal cadastrar um agora mesmo?
       </p>
 
-      <button
-        type="button"
-        className="py-2.5 px-4 rounded-lg bg-violet-500 text-violet-50 text-sm font-medium flex items-center gap-2 hover:bg-violet-600 transition-colors"
-      >
-        <Plus size={20} />
+      <Button>
+        <Plus className="size-4" />
         Cadastrar meta
-      </button>
+      </Button>
     </div>
   );
 }
