@@ -1,37 +1,21 @@
-import { useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import { CreateGoalDialog } from "./components/createGoalDialog";
 import { EmptyGoals } from "./components/emptyGoals";
 import { Dialog } from "./components/ui/dialog";
 import { WeekSummary } from "./components/weekSummary";
+import { getSummaryRequest } from "./http/getSummaryRequest";
 
-type WeekSummaryType = {
-  completed: number;
-  total: number;
-  goalsPerDay: Record<
-    string,
-    {
-      id: string;
-      title: string;
-      completedAt: string;
-    }[]
-  >;
-};
+
 export function App() {
-  const [weekSummary, setWeekSummary] = useState<WeekSummaryType | undefined>(
-    undefined
-  );
-
-  useEffect(() => {
-    fetch("http://localhost:3333/summary")
-      .then((response) => response.json())
-      .then((data) => {
-        setWeekSummary(data);
-      });
-  }, []);
+  const { data } = useQuery({
+    queryKey: ["summary"],
+    queryFn: getSummaryRequest,
+    staleTime: 1_000 * 60
+  });
 
   return (
     <Dialog>
-      {weekSummary && weekSummary.total > 17 ? <WeekSummary /> : <EmptyGoals />}
+      {data && data?.total > 17 ? <WeekSummary /> : <EmptyGoals />}
       <CreateGoalDialog />
     </Dialog>
   );

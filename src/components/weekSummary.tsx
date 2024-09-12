@@ -4,8 +4,16 @@ import { InOrbitIcon } from "./inOrbitIcon";
 import { OutlineButton } from "./ui/outline-button";
 import { Progress, ProgressIndicator } from "./ui/progress-bar";
 import { Separator } from "./ui/separator";
+import { useQuery } from "@tanstack/react-query";
+import { getSummaryRequest } from "../http/getSummaryRequest";
 
 export function WeekSummary() {
+  const { data } = useQuery({
+    queryKey: ["summary"],
+    queryFn: getSummaryRequest,
+    staleTime: 1_000 * 60
+  });
+  
   return (
     <div className="py-10 px-5 max-w-[480px] mx-auto flex flex-col gap-6">
       <div className="flex items-center justify-between">
