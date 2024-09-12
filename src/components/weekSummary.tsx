@@ -1,14 +1,13 @@
-import { CheckCircle2, Plus } from "lucide-react";
-import { GoalDialogTrigger } from "./goalDialogTrigger";
-import { InOrbitIcon } from "./inOrbitIcon";
-import { OutlineButton } from "./ui/outline-button";
-import { Progress, ProgressIndicator } from "./ui/progress-bar";
-import { Separator } from "./ui/separator";
 import { useQuery } from "@tanstack/react-query";
-import { getSummaryRequest } from "../http/getSummaryRequest";
 import dayjs from "dayjs";
 import ptBR from "dayjs/locale/pt-br";
+import { CheckCircle2 } from "lucide-react";
+import { getSummaryRequest } from "../http/getSummaryRequest";
+import { GoalDialogTrigger } from "./goalDialogTrigger";
+import { InOrbitIcon } from "./inOrbitIcon";
 import { PendingGoals } from "./pendingGoals";
+import { Progress, ProgressIndicator } from "./ui/progress-bar";
+import { Separator } from "./ui/separator";
 
 export function WeekSummary() {
   const { data } = useQuery({
