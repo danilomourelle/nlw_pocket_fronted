@@ -16,6 +16,8 @@ import {
 import { Controller, useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { createGoal } from "../http/createGoal";
+import { useQueryClient } from "@tanstack/react-query";
 
 const createGoalForm = z.object({
   title: z.string().min(1, "Informe a meta que você deve adicionar"),
@@ -28,10 +30,20 @@ const createGoalForm = z.object({
 type CreateGoalFormData = z.infer<typeof createGoalForm>;
 
 export function CreateGoalDialog() {
-  const { register, control, handleSubmit, formState } =
+  const queryClient = useQueryClient();
+  const { register, control, handleSubmit, formState, reset } =
     useForm<CreateGoalFormData>({
       resolver: zodResolver(createGoalForm),
     });
+
+  async function handleCreateGoal(data: CreateGoalFormData) {
+    await createGoal(data);
+
+    queryClient.invalidateQueries({ queryKey: ["pending-goals"] });
+    queryClient.invalidateQueries({ queryKey: ["summary"] });
+
+    reset();
+  }
 
   return (
     <DialogContent>
@@ -49,6 +61,10 @@ export function CreateGoalDialog() {
           </DialogDescription>
         </div>
 
+        <form
+          onSubmit={handleSubmit(handleCreateGoal)}
+          className="flex flex-1 flex-col justify-between gap-6"
+        >
           <div className="flex flex-col gap-6">
             <div className="flex flex-col gap-2">
               <Label htmlFor="title">Qual a atividade</Label>
