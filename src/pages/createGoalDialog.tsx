@@ -1,18 +1,18 @@
 import { X } from "lucide-react";
-import { Button } from "./ui/button";
+import { Button } from "../components/ui/button";
 import {
   DialogClose,
   DialogContent,
   DialogDescription,
   DialogTitle,
-} from "./ui/dialog";
-import { Input } from "./ui/input";
-import { Label } from "./ui/label";
+} from "../components/ui/dialog";
+import { Input } from "../components/ui/input";
+import { Label } from "../components/ui/label";
 import {
   RadioGroup,
   RadioGroupIndicator,
   RadioGroupItem,
-} from "./ui/radio-group";
+} from "../components/ui/radio-group";
 import { Controller, useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";

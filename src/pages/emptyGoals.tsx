@@ -1,6 +1,6 @@
 import letsStart from "../assets/lets-start-illustration.svg";
 import logo from "../assets/logo-in-orbit.svg";
-import { GoalDialogTrigger } from "./goalDialogTrigger";
+import { GoalDialogTrigger } from "../components/goalDialogTrigger";
 
 export function EmptyGoals() {
   return (

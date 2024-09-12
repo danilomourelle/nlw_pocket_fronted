@@ -2,12 +2,12 @@ import { useQuery } from "@tanstack/react-query";
 import dayjs from "dayjs";
 import ptBR from "dayjs/locale/pt-br";
 import { CheckCircle2 } from "lucide-react";
+import { GoalDialogTrigger } from "../components/goalDialogTrigger";
+import { InOrbitIcon } from "../components/inOrbitIcon";
+import { PendingGoals } from "../components/pendingGoals";
+import { Progress, ProgressIndicator } from "../components/ui/progress-bar";
+import { Separator } from "../components/ui/separator";
 import { getSummaryRequest } from "../http/getSummaryRequest";
-import { GoalDialogTrigger } from "./goalDialogTrigger";
-import { InOrbitIcon } from "./inOrbitIcon";
-import { PendingGoals } from "./pendingGoals";
-import { Progress, ProgressIndicator } from "./ui/progress-bar";
-import { Separator } from "./ui/separator";
 
 export function WeekSummary() {
   const { data } = useQuery({
