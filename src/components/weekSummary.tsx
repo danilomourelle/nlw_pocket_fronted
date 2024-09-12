@@ -8,6 +8,7 @@ import { useQuery } from "@tanstack/react-query";
 import { getSummaryRequest } from "../http/getSummaryRequest";
 import dayjs from "dayjs";
 import ptBR from "dayjs/locale/pt-br";
+import { PendingGoals } from "./pendingGoals";
 
 export function WeekSummary() {
   const { data } = useQuery({
@@ -55,24 +56,7 @@ export function WeekSummary() {
 
       <Separator />
 
-      <div className="flex flex-wrap gap-3">
-        <OutlineButton>
-          <Plus className="size-4 text-zinc-600" />
-          Meditar
-        </OutlineButton>
-        <OutlineButton>
-          <Plus className="size-4 text-zinc-600" />
-          Nadar
-        </OutlineButton>
-        <OutlineButton>
-          <Plus className="size-4 text-zinc-600" />
-          Beber água
-        </OutlineButton>
-        <OutlineButton>
-          <Plus className="size-4 text-zinc-600" />
-          Caminhada
-        </OutlineButton>
-      </div>
+      <PendingGoals />
 
       <div className="flex flex-col gap-6">
         <h2 className="text-xl flex-col gap-6">Sua semana</h2>
