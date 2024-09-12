@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import dayjs from "dayjs";
 import ptBR from "dayjs/locale/pt-br";
-import { CheckCircle2 } from "lucide-react";
+import { DayInfo } from "../components/dayInfo";
 import { GoalDialogTrigger } from "../components/goalDialogTrigger";
 import { InOrbitIcon } from "../components/inOrbitIcon";
 import { PendingGoals } from "../components/pendingGoals";
@@ -26,6 +26,7 @@ export function WeekSummary() {
 
   return (
     <div className="py-10 px-5 max-w-[480px] mx-auto flex flex-col gap-6">
+      {/* Header */}
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
           <InOrbitIcon />
@@ -37,8 +38,9 @@ export function WeekSummary() {
         <GoalDialogTrigger size="sm" />
       </div>
 
+      {/* Progress */}
       <div className="flex flex-col gap-3">
-        <Progress value={8} max={15}>
+        <Progress>
           <ProgressIndicator style={{ width: `${progressPercentage}%` }} />
         </Progress>
 
@@ -54,41 +56,14 @@ export function WeekSummary() {
       </div>
 
       <Separator />
-
       <PendingGoals />
 
+      {/* Goals per day */}
       <div className="flex flex-col gap-6">
         <h2 className="text-xl flex-col gap-6">Sua semana</h2>
-        {Object.entries(data.goalsPerDay).map(([day, goals]) => {
-          const weekDay = dayjs(day).format("dddd");
-          const formattedDate = dayjs(day).format("DD[ de ]MMMM");
-
-          return (
-            <div key={day} className="flex flex-col gap-4">
-              <h3 className="font-medium capitalize">
-                {weekDay}{" "}
-                <span className="text-zinc-400 text-xs">({formattedDate})</span>
-              </h3>
-
-              <ul className="flex flex-col gap-3">
-                {goals.map((goal) => {
-                  const time = dayjs(goal.completedAt).format("HH[h]mm[m]");
-
-                  return (
-                    <li key={goal.id} className="flex items-center gap-2">
-                      <CheckCircle2 className="size-4 text-pink-500" />
-                      <span className="text-sm text-zinc-400">
-                        Você completou "
-                        <span className="text-zinc-100">{goal.title}</span>" às{" "}
-                        <span className="text-zinc-100">{time}</span>
-                      </span>
-                    </li>
-                  );
-                })}
-              </ul>
-            </div>
-          );
-        })}
+        {Object.entries(data.goalsPerDay).map(([date, goals]) => (
+          <DayInfo key={date} date={date} goals={goals} />
+        ))}
       </div>
     </div>
   );
