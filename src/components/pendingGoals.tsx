@@ -10,6 +10,7 @@ export function PendingGoals() {
   const { data } = useQuery({
     queryKey: ["pending-goals"],
     queryFn: getGoalsProgress,
+    staleTime: 1_000 * 60,
   });
 
   if (!data) return null;
