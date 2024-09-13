@@ -61,7 +61,7 @@ export function WeekSummary() {
       {/* Goals per day */}
       <div className="flex flex-col gap-6">
         <h2 className="text-xl flex-col gap-6">Sua semana</h2>
-        {Object.entries(data.goalsPerDay).map(([date, goals]) => (
+        {data.goalsPerDay && Object.entries(data.goalsPerDay).map(([date, goals]) => (
           <DayInfo key={date} date={date} goals={goals} />
         ))}
       </div>
