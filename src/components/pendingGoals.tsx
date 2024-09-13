@@ -1,7 +1,7 @@
 import { Plus } from "lucide-react";
 import { OutlineButton } from "./ui/outline-button";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { getPendingGoals } from "../http/getPendingGoals";
+import { getGoalsProgress } from "../http/getGoalsProgress";
 import { completeGoal } from "../http/completeGoal";
 
 export function PendingGoals() {
@@ -9,7 +9,7 @@ export function PendingGoals() {
 
   const { data } = useQuery({
     queryKey: ["pending-goals"],
-    queryFn: getPendingGoals,
+    queryFn: getGoalsProgress,
   });
 
   if (!data) return null;
